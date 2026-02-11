@@ -33,11 +33,15 @@
   <!-- Hero -->
   <section id="inicio" class="hero">
     <div class="hero-bg">
+      <div class="hero-banner" role="img" aria-label="Hexagonal - Software ético para la educación"></div>
       <div class="hero-gradient"></div>
       <div class="hero-grid"></div>
       <div class="hero-float hero-float-1"></div>
       <div class="hero-float hero-float-2"></div>
       <div class="hero-float hero-float-3"></div>
+      <div class="cursor-glow cursor-follow" data-speed="0.08"></div>
+      <div class="cursor-dot cursor-follow" data-speed="0.12"></div>
+      <div class="cursor-ring cursor-follow" data-speed="0.06"></div>
     </div>
     <div class="hero-content">
       <p class="hero-badge">Quito, Ecuador</p>
@@ -81,6 +85,7 @@
 
   <!-- Servicios -->
   <section id="servicios" class="section section-servicios">
+    <div class="section-cursor-glow cursor-follow" data-speed="0.04" aria-hidden="true"></div>
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Qué hacemos</span>
@@ -144,11 +149,11 @@
       <div class="modelos-grid">
         <div class="modelo-wrapper">
           <div id="canvas-modelo-1" class="canvas-3d"></div>
-          <p class="modelo-label">Modelo 1 — Reconstrucción 3D</p>
+          <p class="modelo-label">Cerebro — Reconstrucción fotogramétrica</p>
         </div>
         <div class="modelo-wrapper">
           <div id="canvas-modelo-2" class="canvas-3d"></div>
-          <p class="modelo-label">Modelo 2 — Reconstrucción 3D</p>
+          <p class="modelo-label">Torso sagital — Reconstrucción fotogramétrica</p>
         </div>
       </div>
     </div>
@@ -156,6 +161,7 @@
 
   <!-- Contacto -->
   <section id="contacto" class="section section-contacto">
+    <div class="section-cursor-glow cursor-follow" data-speed="0.05" aria-hidden="true"></div>
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Hablemos</span>
@@ -184,8 +190,7 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-  <script src="models.js"></script>
+  <script type="module" src="models.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

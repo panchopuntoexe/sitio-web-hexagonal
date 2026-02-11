@@ -3,10 +3,13 @@
   --color-bg: #0a0b0f;
   --color-surface: #12141c;
   --color-surface-2: #1a1d28;
-  --color-primary: #00d4aa;
-  --color-primary-dim: #00a884;
-  --color-accent: #7c3aed;
-  --color-accent-2: #06b6d4;
+  /* Paleta: Iceberg Blue (principal), Persian Blue (secundario) */
+  --color-primary: #E1EBFF;
+  --color-primary-dim: #8CB4FF;
+  --color-secondary: #3C23D7;
+  --color-secondary-bright: #2D69FF;
+  --color-accent: #3C23D7;
+  --color-accent-2: #8CB4FF;
   --color-text: #e2e8f0;
   --color-text-muted: #94a3b8;
   --font-heading: 'Space Grotesk', sans-serif;
@@ -120,7 +123,7 @@ body {
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-accent-2));
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
   transition: width var(--transition);
 }
 
@@ -166,13 +169,26 @@ body {
   overflow: hidden;
 }
 
+.hero-banner {
+  position: absolute;
+  inset: 0;
+  background: url("assets/img/banner.jpeg") center / cover no-repeat;
+  opacity: 0.45;
+  animation: banner-fade 1.2s ease-out;
+}
+
+@keyframes banner-fade {
+  from { opacity: 0; }
+  to { opacity: 0.45; }
+}
+
 .hero-gradient {
   position: absolute;
   inset: 0;
-  background: 
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 212, 170, 0.15), transparent),
-    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(124, 58, 237, 0.12), transparent),
-    radial-gradient(ellipse 50% 30% at 20% 80%, rgba(6, 182, 212, 0.1), transparent);
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(225, 235, 255, 0.12), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(60, 35, 215, 0.15), transparent),
+    radial-gradient(ellipse 50% 30% at 20% 80%, rgba(45, 105, 255, 0.1), transparent);
   animation: gradient-shift 8s ease-in-out infinite alternate;
 }
 
@@ -184,9 +200,9 @@ body {
 .hero-grid {
   position: absolute;
   inset: 0;
-  background-image: 
-    linear-gradient(rgba(0, 212, 170, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 212, 170, 0.03) 1px, transparent 1px);
+  background-image:
+    linear-gradient(rgba(225, 235, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(225, 235, 255, 0.04) 1px, transparent 1px);
   background-size: 60px 60px;
   animation: grid-move 20s linear infinite;
 }
@@ -216,7 +232,7 @@ body {
 .hero-float-2 {
   width: 200px;
   height: 200px;
-  background: var(--color-accent);
+  background: var(--color-secondary);
   top: 60%;
   right: 15%;
   animation-delay: -2s;
@@ -237,6 +253,77 @@ body {
   66% { transform: translate(-15px, 10px) scale(0.95); }
 }
 
+/* Elementos que siguen al cursor */
+.cursor-follow {
+  will-change: transform;
+  transition: transform 0.15s ease-out;
+  pointer-events: none;
+}
+
+.cursor-glow {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(225, 235, 255, 0.08) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  margin: -200px 0 0 -200px;
+  z-index: 0;
+}
+
+.cursor-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  top: 50%;
+  left: 50%;
+  margin: -6px 0 0 -6px;
+  z-index: 1;
+  box-shadow: 0 0 20px rgba(225, 235, 255, 0.5);
+}
+
+.cursor-ring {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid rgba(225, 235, 255, 0.3);
+  top: 50%;
+  left: 50%;
+  margin: -30px 0 0 -30px;
+  z-index: 1;
+  animation: cursor-ring-pulse 2s ease-in-out infinite;
+}
+
+@keyframes cursor-ring-pulse {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.4; }
+}
+
+/* Brillos que siguen al cursor en secciones */
+.section-cursor-glow {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(60, 35, 215, 0.12) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  margin: -140px 0 0 -140px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.section-servicios .section-cursor-glow,
+.section-contacto .section-cursor-glow {
+  width: 280px;
+  height: 280px;
+  margin: -140px 0 0 -140px;
+}
+
 .hero-content {
   position: relative;
   z-index: 2;
@@ -247,19 +334,19 @@ body {
 .hero-badge {
   display: inline-block;
   padding: 0.4rem 1rem;
-  background: rgba(0, 212, 170, 0.15);
+  background: rgba(225, 235, 255, 0.12);
   color: var(--color-primary);
   border-radius: 100px;
   font-size: 0.85rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
-  border: 1px solid rgba(0, 212, 170, 0.3);
+  border: 1px solid rgba(225, 235, 255, 0.35);
   animation: fade-in-up 0.8s ease-out, badge-glow 3s ease-in-out infinite 0.5s;
 }
 
 @keyframes badge-glow {
-  0%, 100% { box-shadow: 0 0 0 rgba(0, 212, 170, 0); }
-  50% { box-shadow: 0 0 20px rgba(0, 212, 170, 0.2); }
+  0%, 100% { box-shadow: 0 0 0 rgba(225, 235, 255, 0); }
+  50% { box-shadow: 0 0 20px rgba(225, 235, 255, 0.25); }
 }
 
 .hero-title {
@@ -310,13 +397,13 @@ body {
 
 .btn-primary {
   background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dim));
-  color: var(--color-bg);
+  color: var(--color-secondary);
   border: none;
 }
 
 .btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(0, 212, 170, 0.35);
+  box-shadow: 0 12px 32px rgba(225, 235, 255, 0.35);
 }
 
 .hero-scroll {
@@ -366,6 +453,7 @@ body {
 .section {
   padding: 5rem 0;
   position: relative;
+  overflow: hidden;
 }
 
 .section-header {
@@ -454,7 +542,7 @@ body {
 
 .stat-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(0, 212, 170, 0.2);
+  border-color: rgba(225, 235, 255, 0.2);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
 }
 
@@ -502,7 +590,7 @@ body {
 
 .servicio-card:hover {
   transform: translateY(-8px) scale(1.02);
-  border-color: rgba(0, 212, 170, 0.25);
+  border-color: rgba(225, 235, 255, 0.2);
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.25);
 }
 
@@ -588,7 +676,7 @@ body {
 
 .anatomy-card {
   background: linear-gradient(145deg, var(--color-surface-2), var(--color-surface));
-  border: 1px solid rgba(0, 212, 170, 0.2);
+  border: 1px solid rgba(225, 235, 255, 0.2);
   border-radius: var(--radius-lg);
   padding: 2.5rem;
   max-width: 320px;
@@ -612,7 +700,7 @@ body {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-accent-2));
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--transition-slow);
@@ -624,7 +712,7 @@ body {
 
 .anatomy-card:hover {
   transform: scale(1.03);
-  box-shadow: 0 24px 56px rgba(0, 212, 170, 0.15);
+  box-shadow: 0 24px 56px rgba(225, 235, 255, 0.12);
 }
 
 .anatomy-app-name {
@@ -679,6 +767,7 @@ body {
 .canvas-3d {
   width: 100%;
   aspect-ratio: 4/3;
+  min-height: 240px;
   background: linear-gradient(180deg, #0d0e14 0%, #151720 100%);
   display: block;
 }
@@ -731,7 +820,7 @@ body {
 .contacto-card:hover {
   transform: translateY(-6px);
   border-color: var(--color-primary);
-  box-shadow: 0 16px 40px rgba(0, 212, 170, 0.2);
+  box-shadow: 0 16px 40px rgba(225, 235, 255, 0.2);
 }
 
 .contacto-icon {

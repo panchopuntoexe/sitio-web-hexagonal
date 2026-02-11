@@ -90,4 +90,48 @@
   }
 
   if (statNumbers.length) initCounters();
+
+  // Animaciones que siguen al cursor
+  var cursorElements = document.querySelectorAll('.cursor-follow');
+  var mouseX = 0;
+  var mouseY = 0;
+  var centerX = window.innerWidth / 2;
+  var centerY = window.innerHeight / 2;
+  var currentX = [];
+  var currentY = [];
+
+  cursorElements.forEach(function (_, i) {
+    currentX[i] = 0;
+    currentY[i] = 0;
+  });
+
+  function onMouseMove(e) {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  }
+
+  function lerp(start, end, factor) {
+    return start + (end - start) * factor;
+  }
+
+  function animateCursor() {
+    centerX = window.innerWidth / 2;
+    centerY = window.innerHeight / 2;
+    var dx = mouseX - centerX;
+    var dy = mouseY - centerY;
+
+    cursorElements.forEach(function (el, i) {
+      var speed = parseFloat(el.getAttribute('data-speed')) || 0.05;
+      currentX[i] = lerp(currentX[i], dx * speed, 0.08);
+      currentY[i] = lerp(currentY[i], dy * speed, 0.08);
+      el.style.transform = 'translate(' + currentX[i] + 'px, ' + currentY[i] + 'px)';
+    });
+
+    requestAnimationFrame(animateCursor);
+  }
+
+  if (cursorElements.length && window.matchMedia('(pointer: fine)').matches) {
+    document.addEventListener('mousemove', onMouseMove, { passive: true });
+    animateCursor();
+  }
 })();
