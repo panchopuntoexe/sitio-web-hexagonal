@@ -1,12 +1,12 @@
 /**
- * Carga y muestra el modelo 3D del cerebro (OBJ). Solo este modelo, girando.
+ * Carga y muestra el modelo 3D del cerebro (OBJ) usando fetch + parse.
+ * Evita fallos por MTL faltante cargando el OBJ como texto y parseándolo.
  */
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
 import { OBJLoader } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/loaders/OBJLoader.js';
 
 const CONTAINER_ID = 'canvas-cerebro';
-const OBJ_DIR = 'assets/models/cerebro/';
-const OBJ_FILE = 'texturedMesh.obj';
+const OBJ_URL = 'assets/models/cerebro/texturedMesh.obj';
 
 function createMaterial() {
   return new THREE.MeshPhongMaterial({
@@ -74,12 +74,25 @@ function createBrainScene() {
   }
   window.addEventListener('resize', onResize);
 
-  const loader = new OBJLoader();
-  loader.setPath(OBJ_DIR);
+  function addFallback() {
+    const loadingEl = container.querySelector('.canvas-3d-loading');
+    if (loadingEl) loadingEl.textContent = 'No se pudo cargar el modelo.';
+    const geo = new THREE.IcosahedronGeometry(0.9, 2);
+    mesh = new THREE.Mesh(geo, createMaterial());
+    scene.add(mesh);
+  }
 
-  loader.load(
-    OBJ_FILE,
-    (group) => {
+  const loader = new OBJLoader();
+  const url = new URL(OBJ_URL, window.location.href).href;
+
+  fetch(url)
+    .then((res) => {
+      if (!res.ok) throw new Error('OBJ no encontrado');
+      return res.text();
+    })
+    .then((objText) => {
+      const cleanObj = objText.replace(/^mtllib\s+.*$/gm, '').trim();
+      const group = loader.parse(cleanObj);
       const loadingEl = container.querySelector('.canvas-3d-loading');
       if (loadingEl) loadingEl.remove();
       group.traverse((child) => {
@@ -90,17 +103,11 @@ function createBrainScene() {
       fitAndCenter(group);
       mesh = group;
       scene.add(group);
-    },
-    undefined,
-    (err) => {
+    })
+    .catch((err) => {
       console.warn('Error cargando cerebro:', err);
-      const loadingEl = container.querySelector('.canvas-3d-loading');
-      if (loadingEl) loadingEl.textContent = 'No se pudo cargar el modelo.';
-      const geo = new THREE.IcosahedronGeometry(0.9, 2);
-      mesh = new THREE.Mesh(geo, createMaterial());
-      scene.add(mesh);
-    }
-  );
+      addFallback();
+    });
 }
 
 function init() {

@@ -66,20 +66,12 @@
         <h2 class="section-title">Innovación con forma</h2>
         <p class="section-desc">Somos <strong>Hexagonal</strong>, una empresa de Quito, Ecuador, que combina fotogrametría, desarrollo de software y consultoría para ofrecer soluciones que transforman datos del mundo real en modelos digitales precisos y útiles.</p>
       </div>
-      <div class="stats">
-        <div class="stat-card">
-          <span class="stat-number" data-target="100">0</span>+
-          <span class="stat-label">Proyectos</span>
-        </div>
+      <!--div class="stats">
         <div class="stat-card">
           <span class="stat-number" data-target="5">0</span>+
           <span class="stat-label">Años de experiencia</span>
         </div>
-        <div class="stat-card">
-          <span class="stat-number" data-target="3">0</span>
-          <span class="stat-label">Áreas de expertise</span>
-        </div>
-      </div>
+      </div-->
     </div>
   </section>
 
@@ -91,6 +83,44 @@
         <span class="section-tag">Qué hacemos</span>
         <h2 class="section-title">Servicios</h2>
       </div>
+      <div class="herramientas-catalogo-section">
+        <span class="section-tag">Herramientas</span>
+        <h3 class="herramientas-title">Tecnologías que usamos</h3>
+        <div class="herramientas-catalogo">
+        <div class="herramienta-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg" alt="Meshroom" class="herramienta-icon">
+          <span>Meshroom</span>
+        </div>
+        <div class="herramienta-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/blender/blender-original.svg" alt="Blender" class="herramienta-icon">
+          <span>Blender</span>
+        </div>
+        <div class="herramienta-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" alt="Unity" class="herramienta-icon">
+          <span>Unity</span>
+        </div>
+        <div class="herramienta-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" alt="Angular" class="herramienta-icon">
+          <span>Angular</span>
+        </div>
+        <div class="herramienta-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" class="herramienta-icon">
+          <span>React</span>
+        </div>
+        <div class="herramienta-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure" class="herramienta-icon">
+          <span>Azure</span>
+        </div>
+        <div class="herramienta-item">
+          <img src="assets/img/power-bi-icon.webp" alt="Power BI" class="herramienta-icon">
+          <span>Power BI</span>
+        </div>
+        <div class="herramienta-item">
+          <img src="assets/img/fabric.webp" alt="Microsoft Fabric" class="herramienta-icon">
+          <span>Microsoft Fabric</span>
+        </div>
+        </div>
+      </div>
       <div class="servicios-grid">
         <article class="servicio-card">
           <div class="servicio-icon">📐</div>
@@ -100,12 +130,12 @@
         <article class="servicio-card">
           <div class="servicio-icon">💻</div>
           <h3>Software</h3>
-          <p>Desarrollo a medida: aplicaciones, pipelines de procesamiento y herramientas que aprovechan datos 3D.</p>
+          <p>Desarrollo a medida: aplicaciones, pipelines de procesamiento y herramientas que aprovechan modelos 3D.</p>
         </article>
         <article class="servicio-card">
           <div class="servicio-icon">🔬</div>
           <h3>Consultoría</h3>
-          <p>Asesoría técnica en proyectos de digitalización, calidad de datos y integración de tecnologías 3D.</p>
+          <p>Asesoría técnica en proyectos de digitalización, TI, ingeniería de datos y integración de tecnologías 3D.</p>
         </article>
       </div>
     </div>
@@ -127,10 +157,24 @@
           </ul>
         </div>
         <div class="anatomy-visual">
-          <div class="anatomy-card">
-            <div class="anatomy-card-inner">
-              <span class="anatomy-app-name">Your Anatomy</span>
-              <p>Fotogrametría aplicada a la anatomía humana</p>
+          <div class="anatomy-models-grid">
+            <div class="anatomy-model-card">
+              <div class="anatomy-img-wrap">
+                <img src="assets/gif/Cerebro.gif" alt="Modelo 3D de Cerebro" class="anatomy-img" loading="lazy">
+              </div>
+              <div class="anatomy-card-inner">
+                <span class="anatomy-app-name">Cerebro</span>
+                <p>Reconstrucción fotogramétrica</p>
+              </div>
+            </div>
+            <div class="anatomy-model-card">
+              <div class="anatomy-img-wrap">
+                <img src="assets/gif/Principal.gif" alt="Modelo 3D Principal" class="anatomy-img" loading="lazy">
+              </div>
+              <div class="anatomy-card-inner">
+                <span class="anatomy-app-name">Anatomía Principal</span>
+                <p>Modelo fotogramétrico completo</p>
+              </div>
             </div>
           </div>
         </div>
@@ -138,7 +182,7 @@
     </div>
   </section>
 
-  <!-- Trabajos - Modelos 3D giratorios -->
+  <!-- Trabajos - Ejemplos fotogramétricos -->
   <section id="trabajos" class="section section-trabajos">
     <div class="container">
       <div class="section-header">
@@ -146,12 +190,15 @@
         <h2 class="section-title">Ejemplos de nuestro trabajo</h2>
         <p class="section-desc">Modelos 3D generados con nuestras técnicas de fotogrametría y software.</p>
       </div>
-      <div class="modelos-grid modelos-grid--single">
-        <div class="modelo-wrapper">
-          <div id="canvas-cerebro" class="canvas-3d">
-            <p class="canvas-3d-loading">Cargando modelo…</p>
+      <div class="trabajos-grid">
+        <div class="trabajo-card">
+          <div class="trabajo-img-wrap">
+            <img src="assets/gif/Fotogrametría.gif" alt="Proceso de Fotogrametría" class="trabajo-img" loading="lazy">
           </div>
-          <p class="modelo-label">Cerebro — Reconstrucción fotogramétrica</p>
+          <div class="trabajo-info">
+            <h3 class="trabajo-title">Proceso de Fotogrametría</h3>
+            <p class="trabajo-desc">Ejemplo de nuestro proceso completo de captura y reconstrucción 3D utilizando fotogrametría.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -167,15 +214,15 @@
         <p class="section-desc">¿Tienes un proyecto en mente? Escríbenos por email o WhatsApp.</p>
       </div>
       <div class="contacto-links">
-        <a href="mailto:contacto@hexagonal.ec" class="contacto-card">
+        <a href="mailto:youranatomyapp@gmail.com" class="contacto-card">
           <span class="contacto-icon">✉️</span>
           <span class="contacto-label">Email</span>
-          <span class="contacto-value">contacto@hexagonal.ec</span>
+          <span class="contacto-value">youranatomyapp@gmail.com</span>
         </a>
-        <a href="https://wa.me/593999999999" target="_blank" rel="noopener noreferrer" class="contacto-card">
+        <a href="https://wa.me/593998709896" target="_blank" rel="noopener noreferrer" class="contacto-card">
           <span class="contacto-icon">📱</span>
           <span class="contacto-label">WhatsApp</span>
-          <span class="contacto-value">+593 99 999 9999</span>
+          <span class="contacto-value">+593 99 870 9896</span>
         </a>
       </div>
       <p class="contacto-note">Quito, Ecuador</p>
@@ -188,7 +235,6 @@
     </div>
   </footer>
 
-  <script type="module" src="models.js"></script>
   <script src="main.js"></script>
 </body>
 </html>
